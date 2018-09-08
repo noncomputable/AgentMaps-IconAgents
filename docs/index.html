@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Spritegents Documentation</h1><p>The sidebar of this page contains a list of classes and functions used by Agentmap-Spritegents. 
+Click them to see their methods and properties, their purposes, and their types.</p>
+<p>Here I'll explain some features of Agentmap-Spritegents that the auto-generated docs probably aren't sufficiently helpful for.</p>
+<p>For spritegents, custom images are <a href="https://leafletjs.com/reference-1.3.4.html#icon">Leaflet Icons</a>
+and the agents (spritegents) themselves are <a href="https://leafletjs.com/reference-1.3.4.html#marker">Leaflet Markers</a>, 
+instead of the usual <a href="https://leafletjs.com/reference-1.3.4.html#circlemarker">Leaflet CircleMarkers</a>). 
+To accomodate icons and markers, the parameters for the <code>Spritegent</code> constructor are slightly different from the <code>Agent</code> constructor.</p>
+<p>The <code>Spritegent</code> constructor accepts 4 arguments: </p>
+<ul>
+<li>A LatLng specifying where the spritegent should be placed</li>
+<li>An object specifying the <a href="https://leafletjs.com/reference-1.3.4.html#icon">Leaflet options</a> for the image (e.g. the file name, size, anchor, etc.)</li>
+<li>An object specifying the <a href="https://leafletjs.com/reference-1.3.4.html#marker">Leaflet options</a> for the    marker, excluding its icon (e.g. the opacity)</li>
+<li>An Agentmap instance to add the Spritegent into</li>
+</ul>
+<p>Agentmap-Spritegents also includes a lowercase <code>spritegent</code> factory function which returns a new <code>Spritegent</code> instance given the constructor's arguments.</p>
+<p>Finally, Agentmap-Spritegents adds a new <code>Agentmap.spritegentify</code> method to the Agentmap, which is is effectively the same as <a href="https://noncomputable.github.io/AgentMaps/docs/Agentmap.html#agentify">Agentmap.agentify</a> except it produces spritegents instead of agents.
+Accordingly, <code>Agentmap.spritegentify</code> accepts a <code>SpritegentFeatureMaker</code>, which is like an <a href="https://noncomputable.github.io/AgentMaps/docs/global.html#agentFeatureMaker">AgentFeatureMaker</a>, 
+except instead of a <code>layer_options</code> property, it must have an <code>icon_options</code> and <code>marker_options</code> property specifying the relevant icon options and marker options (excluding the Marker's <code>icon</code> option).</p>
+<p>Here's an example of how you'd add a new spritegent into an existing agentmap.</p>
+<pre class="prettyprint source lang-javascript"><code>let my_spritegent = L.A.spritegent(
+    [40.3425, -82.9139], 
+    {
+        &quot;iconUrl&quot;: &quot;images/icon.jpg&quot;,
+        &quot;iconSize&quot;: [50, 50],
+        &quot;iconAnchor&quot;: [25, 25]
+    },
+    {
+        &quot;opacity&quot;: .9
+    },
+    agentmap
+);
+
+agentmap.agents.addLayer(my_spritegent);</code></pre><p>And here's an example of a proper <code>SpritegentFeatureMaker</code> and an associated use of <code>Agentmap.spritegentify</code>:</p>
+<pre class="prettyprint source lang-javascript"><code>function epidemicSpritegentMaker = function(id) {
+    let feature = { 
+        &quot;type&quot;: &quot;Feature&quot;,
+        &quot;properties&quot;: {
+            &quot;place&quot;: {
+                &quot;type&quot;: &quot;unit&quot;,
+                &quot;id&quot;: random_unit_id
+            },
+            &quot;icon_options&quot;: {
+                &quot;iconUrl&quot;: &quot;images/icon.jpg&quot;,
+                &quot;iconSize&quot;: [50, 50],
+                &quot;iconAnchor&quot;: [25, 25]
+            },
+            &quot;marker_options&quot;: {
+                &quot;opacity&quot;: .9
+            },
+            &quot;infected&quot;: Math.random() > .15 ? false : true,
+            &quot;ticks_until_recovery&quot;: Math.random() * 2000,
+        },
+        &quot;geometry&quot;: {
+            &quot;type&quot;: &quot;Point&quot;,
+            &quot;coordinates&quot;: center_coords
+        },
+    };
+
+    return feature;
+}
+
+agentmap.spritegentify(50, epidemicSpritegentMaker);</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Spritegent.html">Spritegent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#spritegent">spritegent</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Sep 08 2018 16:18:17 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
