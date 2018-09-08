@@ -7,7 +7,7 @@ Here I'll explain some features of Agentmap-Spritegents that the auto-generated 
 
 For spritegents, custom images are [Leaflet Icons](https://leafletjs.com/reference-1.3.4.html#icon)
 and the agents (spritegents) themselves are [Leaflet Markers](https://leafletjs.com/reference-1.3.4.html#marker), 
-instead of the usual [Leaflet CircleMarkers](https://leafletjs.com/reference-1.3.4.html#circlemarker)). 
+instead of the usual [Leaflet CircleMarkers](https://leafletjs.com/reference-1.3.4.html#circlemarker). 
 To accomodate icons and markers, the parameters for the `Spritegent` constructor are slightly different from the `Agent` constructor.
 
 The `Spritegent` constructor accepts 4 arguments: 
@@ -22,7 +22,7 @@ Finally, Agentmap-Spritegents adds a new `Agentmap.spritegentify` method to the 
 Accordingly, `Agentmap.spritegentify` accepts a `SpritegentFeatureMaker`, which is like an [AgentFeatureMaker](https://noncomputable.github.io/AgentMaps/docs/global.html#agentFeatureMaker), 
 except instead of a `layer_options` property, it must have an `icon_options` and `marker_options` property specifying the relevant icon options and marker options (excluding the Marker's `icon` option).
 
-Here's an example of how you'd add a new spritegent into an existing agentmap.
+Here's an example of how you'd add a new spritegent into an existing agentmap:
 ```javascript
 let my_spritegent = L.A.spritegent(
 	[40.3425, -82.9139], 
