@@ -1,0 +1,39 @@
+{
+  "name": "agentmaps.spritegents",
+  "version": "1.0.0",
+  "description": "AgentMaps plugin that lets you depict agents with custom images.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "npx webpack",
+    "prepublish": "npm run bundle",
+    "make-docs": "jsdoc src -d site\\docs",
+    "publish-pages": "cp README.md site\\index.md & gh-pages -d site"
+  },
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noncomputable/AgentMaps.Spritegents.git"
+  },
+  "keywords": [
+    "agentmaps",
+    "icons",
+    "sprites",
+    "images"
+  ],
+  "author": "Andrew Gregory Tsesis",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/noncomputable/AgentMaps.Spritegents/issues"
+  },
+  "homepage": "https://github.com/noncomputable/AgentMaps.Spritegents#readme",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@turf/centroid": "^6.0.2",
+    "babel-loader": "^8.0.2",
+    "gh-pages": "^1.2.0",
+    "jsdoc": "^3.5.5",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  }
+}
