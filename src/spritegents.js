@@ -14,7 +14,7 @@ var Spritegent = {};
  * @name Spritegent
  * @constructor 
  * @param {LatLng} lat_lng - A pair of coordinates to place the spritegent at.
- * @param {Object} icon_options - An array of options for the Leaflet Icon depicting of the Spritegent.
+ * @param {Object} icon_options - An array of options for the Leaflet Icon depicting the Spritegent.
  * @param {Object} marker_options - An array of options for the Leaflet Marker representing the Spritegent.
  * @param {Agentmap} agentmap - The agentmap instance in which the spritegent exists.
  * @property {Agentmap} agentmap - The agentmap instance in which the spritegent exists.
@@ -36,7 +36,6 @@ var Spritegent = {};
  */
 Spritegent.initialize = function(lat_lng, icon_options, marker_options, agentmap) {
 	this.agentmap = agentmap,
-	this.icon = L.icon(icon_options);
 	this.place = null,
 	this.steps_made = 0,
 	this.trip = {
@@ -54,17 +53,40 @@ Spritegent.initialize = function(lat_lng, icon_options, marker_options, agentmap
 	this.controller = function() {},
 	this.fine_controller = function() {};
 	
-	marker_options.icon = this.icon;
-	L.Marker.prototype.initialize.call(this, lat_lng, marker_options);
+	if (marker_options) {
+		marker_options.icon = L.icon(icon_options);
+	}
 }
 
-Spritegent = L.A.Agent.extend(Spritegent);
+//Copy over the agents' movement methods.
+Spritegent.resetTrip = L.A.Agent.prototype.resetTrip,
+Spritegent.startTrip = L.A.Agent.prototype.startTrip,
+Spritegent.pauseTrip = L.A.Agent.prototype.pauseTrip,
+Spritegent.resumeTrip = L.A.Agent.prototype.resumeTrip,
+Spritegent.travelTo = L.A.Agent.prototype.travelTo,
+Spritegent.newTripStartPlace = L.A.Agent.prototype.newTripStartPlace,
+Spritegent.setTravelInUnit = L.A.Agent.prototype.setTravelInUnit,
+Spritegent.setTravelToPlace = L.A.Agent.prototype.setTravelToPlace,
+Spritegent.scheduleTrip = L.A.Agent.prototype.scheduleTrip,
+Spritegent.setTravelAlongStreet = L.A.Agent.prototype.setTravelAlongStreet,
+Spritegent.setTravelOnSameStreet = L.A.Agent.prototype.setTravelOnSameStreet,
+Spritegent.setTravelOnStreetNetwork = L.A.Agent.prototype.setTravelOnStreetNetwork,
+Spritegent.setSpeed = L.A.Agent.prototype.setSpeed,
+Spritegent.multiplySpeed = L.A.Agent.prototype.multiplySpeed,
+Spritegent.increaseSpeed = L.A.Agent.prototype.increaseSpeed,
+Spritegent.checkSpeed = L.A.Agent.prototype.checkSpeed,
+Spritegent.travel = L.A.Agent.prototype.travel,
+Spritegent.step = L.A.Agent.prototype.step,
+Spritegent.checkArrival = L.A.Agent.prototype.checkArrival,
+Spritegent.moveIt = L.A.Agent.prototype.moveIt;
+
+Spritegent = L.Marker.extend(Spritegent);
 
 /**
  * Returns a Spritegent object.
  *
  * @param {LatLng} lat_lng - A pair of coordinates to place the spritegent at.
- * @param {Object} icon_options - An array of options for the Leaflet Icon depicting of the Spritegent.
+ * @param {Object} icon_options - An array of options for the Leaflet Icon depicting the Spritegent.
  * @param {Object} marker_options - An array of options for the Leaflet Marker representing the Spritegent.
  * @param {Agentmap} agentmap - The agentmap instance in which the spritegent exists.
  */
@@ -140,7 +162,8 @@ function seqUnitSpritegentMaker(id){
 		"iconUrl": "https://leafletjs.com/examples/custom-icons/leaf-orange.png",
 		"iconSize": [38, 95],
 		"iconAnchor": [22, 94]
-	};
+	},
+	center_point.properties.marker_options = {};
 	
 	return center_point;
 }
@@ -162,7 +185,7 @@ function Spritegentify(count, spritegentFeatureMaker) {
 
 	let agents_existing = agentmap.agents.getLayers().length;
 	for (let i = agents_existing; i < agents_existing + count; i++) {
-		let new_spritegent = spritegent(null, null, agentmap);
+		let new_spritegent = spritegent(null, null, null, agentmap);
 		
 		//Callback function aren't automatically bound to the agentmap.
 		let boundFeatureMaker = spritegentFeatureMaker.bind(agentmap),
@@ -170,7 +193,8 @@ function Spritegentify(count, spritegentFeatureMaker) {
 		
 		let coordinates = L.A.reversedCoordinates(spritegent_feature.geometry.coordinates),
 		place = spritegent_feature.properties.place,
-		layer_options = spritegent_feature.properties.layer_options;
+		icon_options = spritegent_feature.properties.icon_options,
+		marker_options = spritegent_feature.properties.marker_options;
 		
 		//Make sure the agent feature is valid and has everything we need.
 		if (!L.A.isPointCoordinates(coordinates)) {
@@ -180,8 +204,11 @@ function Spritegentify(count, spritegentFeatureMaker) {
 			throw new Error("Invalid feature returned from spritegentFeatureMaker: properties.place must be a {unit: unit_id} or {street: street_id} with an existing layer's ID.");	
 		}
 
+		let icon = L.icon(icon_options);
+//markers dont have setStyle options like circleMarkers
 		new_spritegent.setLatLng(coordinates);
-		new_spritegent.setStyle(layer_options);
+		new_spritegent.setIcon(icon);
+		new_spritegent.place = place;
 		
 		delete spritegent_feature.properties.layer_options;
 		Object.assign(new_spritegent, spritegent_feature.properties);
