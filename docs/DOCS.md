@@ -72,3 +72,18 @@ function epidemicSpritegentMaker = function(id) {
 
 agentmap.spritegentify(50, epidemicSpritegentMaker);
 ```
+
+While normal agents are based on `L.CircleMarker` which has a `setStyle` method you can pass options to at any time, if you'd like to change the style of the `L.Marker` representing the spritegent, you must call one of its [specific styling methods](https://leafletjs.com/reference-1.3.0.html#marker-method). 
+If you'd like to change a spritegent's icon, you can create a new icon and use its `setIcon` method like this:
+```javascript
+let new_icon = L.icon({	
+	"iconUrl": "images/pic.jpg",
+	"iconSize": [20, 18],
+	"iconAnchor": [10, 9]
+)};
+
+spritegent.setIcon(new_icon);
+```
+
+If you have an existing `L.Icon` whose options you'd like to use to create a new spritegent, either via the `Spritegent` constructor or `Agentmap.spritegentify`, 
+you can access its options via its `L.Icon.options` property.
