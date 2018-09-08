@@ -141,7 +141,7 @@ L.A.Spritegent = Spritegent;
  */
 
 /**
- * A standard {@link spritegentFeatureMaker}, which sets a spritegent's location to be the point near the center of the i¿¿ unit of the map,
+ * A standard {@link spritegentFeatureMaker}, which sets a spritegent's location to be the point near the center of the iÂ¿Â¿ unit of the map,
  * its place property to be that unit's, and its layer_options to be red and of radius .5 meters.
  * @memberof Agentmap
  * @instance
@@ -205,7 +205,7 @@ function Spritegentify(count, spritegentFeatureMaker) {
 		}
 
 		let icon = L.icon(icon_options);
-//markers dont have setStyle options like circleMarkers
+
 		new_spritegent.setLatLng(coordinates);
 		new_spritegent.setIcon(icon);
 		new_spritegent.place = place;
