@@ -45,11 +45,13 @@ function setup() {
 	//Specify icons for spritegents to use.
 	agentmap.icons = {
 		healthy: L.icon({
+			"className": "healthy",
 			"iconUrl": "../../resources/healthygent.png",
 			"iconSize": [20, 18],
 			"iconAnchor": [10, 9],
 		}),
 		infected: L.icon({
+			"className": "infected",
 			"iconUrl": "../../resources/infectedgent.png",
 			"iconSize": [20, 18],
 			"iconAnchor": [10, 9],
