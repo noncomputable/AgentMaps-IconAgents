@@ -94,9 +94,6 @@ function spritegent(lat_lng, icon_options, marker_options, agentmap) {
 	return new Spritegent(lat_lng, icon_options, marker_options, agentmap);
 }
 
-//Add Spritegent to the AgentMaps namespace.
-L.A.Spritegent = Spritegent;
-
 /**
  * A user-defined callback function that returns a feature with appropriate geometry and properties to represent a spritegent.
  *
@@ -217,6 +214,7 @@ function Spritegentify(count, spritegentFeatureMaker) {
 	}
 }
 
+exports.Spritegent = Spritegent,
 exports.spritegent = spritegent,
 exports.spritegentify = Spritegentify,
 exports.seqUnitSpritegentMaker = seqUnitSpritegentMaker;
