@@ -1,3 +1,3 @@
-let spritegents = require('./spritegents');
+let iconagents = require('./iconagents');
 
-Object.assign(L.A.Agentmap.prototype, spritegents);
+Object.assign(L.A.Agentmap.prototype, iconagents);

@@ -1,5 +1,5 @@
 {
-  "name": "agentmaps-spritegents",
+  "name": "agentmaps-iconagents",
   "version": "1.0.1",
   "description": "AgentMaps plugin that lets you depict agents with custom images.",
   "scripts": {
@@ -12,7 +12,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/noncomputable/AgentMaps.Spritegents.git"
+    "url": "https://github.com/noncomputable/AgentMaps.IconAgents.git"
   },
   "keywords": [
     "agentmaps",
@@ -24,9 +24,9 @@
   "author": "Andrew Gregory Tsesis",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/noncomputable/AgentMaps.Spritegents/issues"
+    "url": "https://github.com/noncomputable/AgentMaps.IconAgents/issues"
   },
-  "homepage": "https://github.com/noncomputable/AgentMaps.Spritegents#readme",
+  "homepage": "https://github.com/noncomputable/AgentMaps.IconAgents#readme",
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
