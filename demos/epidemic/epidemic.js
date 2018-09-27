@@ -42,7 +42,7 @@ function setup() {
 	agentmap.zoned_units.residential = pick_random_n(agentmap.zoned_units.residential, 100),
 	agentmap.zoned_units.commercial = pick_random_n(agentmap.zoned_units.commercial, 20);
 
-	//Specify icons for spritegents to use.
+	//Specify icons for IconAgents to use.
 	agentmap.icons = {
 		healthy: L.icon({
 			"className": "healthy",
@@ -59,7 +59,7 @@ function setup() {
 	};
 
 	//Generate 200 agents according to the rules of epidemicAgentMaker, displaying them as blue, .5 meter radius circles.
-	agentmap.spritegentify(300, epidemicSpritegentMaker);
+	agentmap.iconagentify(300, epidemicIconAgentMaker);
 
 	//Attach a popup to show when any agent is clicked.
 	agentmap.agents.bindPopup(agentPopupMaker);
@@ -168,7 +168,7 @@ function agentmapController() {
 }
 
 //Return a GeoJSON feature representing an agent.
-function epidemicSpritegentMaker(id) {
+function epidemicIconAgentMaker(id) {
 	//Decide whether the agent will be homebound.
 	var homebound = Math.random() < .25 ? true : false;
 
@@ -219,8 +219,7 @@ function epidemicSpritegentMaker(id) {
 				"type": "unit",
 				"id": home_id
 			},
-			"icon_options": this.icons.healthy.options,
-			"marker_options": {},
+			"icon": this.icons.healthy,
 			"recent_unit_id": home_id,
 			"homebound": homebound,
 			"next_commute": "work",

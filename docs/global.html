@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="spritegent"><span class="type-signature"></span>spritegent<span class="signature">(lat_lng, icon_options, marker_options, agentmap)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="iconagent"><span class="type-signature"></span>iconagent<span class="signature">(lat_lng, icon, agentmap)</span><span class="type-signature"></span></h4>
     
 
     
@@ -112,7 +112,7 @@
 
 
 <div class="description">
-    Returns a Spritegent object.
+    Returns a IconAgent object.
 </div>
 
 
@@ -164,14 +164,14 @@
 
             
 
-            <td class="description last">A pair of coordinates to place the spritegent at.</td>
+            <td class="description last">A pair of coordinates to place the iconagent at.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>icon_options</code></td>
+                <td class="name"><code>icon</code></td>
             
 
             <td class="type">
@@ -187,30 +187,7 @@
 
             
 
-            <td class="description last">An array of options for the Leaflet Icon depicting the Spritegent.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>marker_options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">An array of options for the Leaflet Marker representing the Spritegent.</td>
+            <td class="description last">A Leaflet Icon to depict the agent with.</td>
         </tr>
 
     
@@ -233,7 +210,7 @@
 
             
 
-            <td class="description last">The agentmap instance in which the spritegent exists.</td>
+            <td class="description last">The agentmap instance in which the iconagent exists.</td>
         </tr>
 
     
@@ -274,7 +251,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="spritegents.js.html">spritegents.js</a>, <a href="spritegents.js.html#line93">line 93</a>
+        <a href="iconagents.js.html">iconagents.js</a>, <a href="iconagents.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -314,7 +291,7 @@
     
 
     
-    <h4 class="name" id="spritegentFeatureMaker"><span class="type-signature"></span>spritegentFeatureMaker<span class="signature">(id)</span><span class="type-signature"> &rarr; {Point}</span></h4>
+    <h4 class="name" id="iconAgentFeatureMaker"><span class="type-signature"></span>iconAgentFeatureMaker<span class="signature">(id)</span><span class="type-signature"> &rarr; {Point}</span></h4>
     
 
     
@@ -322,7 +299,7 @@
 
 
 <div class="description">
-    A user-defined callback function that returns a feature with appropriate geometry and properties to represent a spritegent.
+    A user-defined callback function that returns a feature with appropriate geometry and properties to represent a iconagent.
 </div>
 
 
@@ -415,7 +392,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="spritegents.js.html">spritegents.js</a>, <a href="spritegents.js.html#line100">line 100</a>
+        <a href="iconagents.js.html">iconagents.js</a>, <a href="iconagents.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -442,7 +419,7 @@
 
         
 <div class="param-desc">
-    - A GeoJSON Point object with geometry and other properties for the spritegent, includinga "place" property that will set the spritegent's initial Place, an "icon_options" propertythat will specify the icon's Leaflet options (like its source and size), and a "marker_options" propertythat will specify the marker's Leaflet options (like its opacity). All other provided properties will be transferred to the Spritegent object once it is created.See <a href="https://leafletjs.com/reference-1.3.2.html#marker">https://leafletjs.com/reference-1.3.2.html#marker</a> and <a href="https://leafletjs.com/reference-1.3.2.html#marker">https://leafletjs.com/reference-1.3.2.html#marker</a> for all possible Icon and Marker options.
+    - A GeoJSON Point object with geometry and other properties for the iconagent, includinga "place" property that will set the iconagent's initial Place, and an "icon" property that determines the icon which will depict the iconagent. All other provided properties will be transferred to the IconAgent object once it is created.See <a href="https://leafletjs.com/reference-1.3.2.html#marker">https://leafletjs.com/reference-1.3.2.html#marker</a> and <a href="https://leafletjs.com/reference-1.3.2.html#marker">https://leafletjs.com/reference-1.3.2.html#marker</a> for all possible Icon and Marker options.
 </div>
 
 
@@ -466,7 +443,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let point = {						"type": "Feature",				 	"properties": {							"icon_options": {						"iconUrl": "pic.jpg",						"iconSize": [38, 95],			"iconAnchor": [22, 94]		},		"marker_options": {			"riseOnHover": true			}		"place": {							"type": "unit",						"id": 89					},														age: 72,						home_city: "LA"					},							"geometry" {							"type": "Point",					"coordinates": [						14.54589,						57.136239					]						}						}							</code></pre>
+    <pre class="prettyprint"><code>let icon_A = L.icon({				"iconUrl": "pic.jpg",				"iconSize": [38, 95],	"iconAnchor": [22, 94]}),point = {						"type": "Feature",				 	"properties": {							"icon": icon_A,		"place": {							"type": "unit",						"id": 89					},										age: 72,						home_city: "LA"					},							"geometry" {							"type": "Point",					"coordinates": [						14.54589,						57.136239					]						}						}							</code></pre>
 
 
 
@@ -484,13 +461,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Spritegent.html">Spritegent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#spritegent">spritegent</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="IconAgent.html">IconAgent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#iconagent">iconagent</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Sep 08 2018 19:15:48 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Sep 19 2018 18:14:46 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
