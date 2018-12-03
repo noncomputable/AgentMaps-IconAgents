@@ -7,5 +7,4 @@ You'll need to include AgentMaps and [Leaflet](https://leafletjs.com/download.ht
 
 Documentation and explanation is [here](https://noncomputable.github.io/AgentMaps-IconAgents/docs/).
 
-A demo of AgentMaps-IconAgents with the basic [AgentMaps epidemic simulation](https://noncomputable.github.io/AgentMaps/demos/epidemic/epidemic.html) is [here](https://noncomputable.github.io/AgentMaps-IconAgents/demos/epidemic/epidemic.html).  
-You can see its source [here](https://github.com/noncomputable/AgentMaps-IconAgents/tree/gh-pages/demos/epidemic).
+A demo of AgentMaps-IconAgents with the basic [AgentMaps contagions simulation](https://noncomputable.github.io/AgentMaps/demos/basic_contagion/basic_contagion.html) is [here](https://noncomputable.github.io/AgentMaps-IconAgents/demos/contagion/contagion.html).  
